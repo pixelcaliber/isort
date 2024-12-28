@@ -35,7 +35,7 @@ sorter.sort_and_format_imports
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/yourusername/isort.
+Bug reports and pull requests are welcome on GitHub at https://github.com/abhinvv1/isort.
 
 ## License
 
