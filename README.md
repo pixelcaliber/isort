@@ -14,6 +14,8 @@ gem install isort
 
 ```bash
 isort --file path/to/your/file.rb
+or
+isort -f path/to/your/file.rb
 ```
 
 ### In Ruby Code
