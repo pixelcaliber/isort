@@ -28,6 +28,48 @@ module Isort
       # Write the sorted content back to the file
       File.write(@file_path, sorted_content)
     end
+
+    def sort_and_format_imports
+      # Read the file content
+      lines = File.readlines(@file_path)
+
+      # Separate and group lines
+      requires = extract_lines(lines, /^require\s/)
+      require_relatives = extract_lines(lines, /^require_relative\s/)
+      includes = extract_lines(lines, /^include\s/)
+      extends = extract_lines(lines, /^extend\s/)
+      autoloads = extract_lines(lines, /^autoload\s/)
+      usings = extract_lines(lines, /^using\s/)
+      others = lines.reject { |line| [requires, require_relatives, includes, extends, autoloads, usings].flatten.include?(line) }
+
+      # Format and sort each group
+      formatted_imports = []
+      formatted_imports << format_group("require", requires)
+      formatted_imports << format_group("require_relative", require_relatives)
+      formatted_imports << format_group("include", includes)
+      formatted_imports << format_group("extend", extends)
+      formatted_imports << format_group("autoload", autoloads)
+      formatted_imports << format_group("using", usings)
+
+      # Combine formatted imports with the rest of the file
+      sorted_content = (formatted_imports + others).join
+
+      # Write the sorted content back to the file
+      File.write(@file_path, sorted_content)
+    end
+
+    private
+
+    def extract_lines(lines, regex)
+      lines.select { |line| line =~ regex }
+    end
+
+    def format_group(type, lines)
+      return [] if lines.empty?
+
+      # Remove duplicates and sort
+      lines.uniq.sort
+    end
   end
   class CLI
     def self.start
@@ -42,7 +84,7 @@ module Isort
 
       if options[:file]
         sorter = FileSorter.new(options[:file])
-        sorter.sort_imports
+        sorter.sort_and_format_imports
         puts "Imports sorted in #{options[:file]}"
       else
         puts "Please specify a file using -f or --file"

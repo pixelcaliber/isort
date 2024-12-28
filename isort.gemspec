@@ -11,13 +11,13 @@ Gem::Specification.new do |spec|
   spec.executables = ["isort"]
   spec.require_paths = ["lib"]
   spec.bindir = "exe"
-  spec.summary = "Versatile and reusable tool for Ruby developers, promoting cleaner and more maintainable codebases! Let me know if you want help with any specific part of this."
-  spec.description = "versatile and reusable tool for Ruby developers, promoting cleaner and more maintainable codebases! Let me know if you want help with any specific part of this."
+  spec.summary     = "A Ruby gem for sorting and organizing import statements"
+  spec.description = "Isort automatically sorts and organizes your Ruby imports, including require, require_relative, include, and extend statements"
   spec.homepage = "https://github.com/abhinvv1/sort"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.0.0"
+  spec.required_ruby_version = ">= 2.6.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/abhinvv1/sort"
@@ -36,6 +36,10 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "optparse", "~> 0.2.0"
+  spec.add_development_dependency "bundler", "~> 2.0"
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "rspec", "~> 3.0"
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
 
