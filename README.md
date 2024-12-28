@@ -13,7 +13,7 @@ gem install isort
 ### Command Line
 
 ```bash
-isort --file path/to/your/file.rb
+isort -f path/to/your/file.rb
 ```
 
 ### In Ruby Code
