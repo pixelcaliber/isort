@@ -61,6 +61,9 @@ module Isort
 
       # Write the sorted content back to the file only if imports exist
       File.write(@file_path, sorted_content) unless formatted_imports.empty? && sorted_content.empty?
+    rescue StandardError => e
+      puts "An error occurred: #{e.message}"
+      raise
     end
 
     private
