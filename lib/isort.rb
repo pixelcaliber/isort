@@ -6,6 +6,7 @@ require 'optparse'
 
 module Isort
   class Error < StandardError; end
+
   class FileSorter
     def initialize(file_path)
       @file_path = file_path
@@ -13,7 +14,7 @@ module Isort
 
     def sort_imports
       # Read the file content
-      lines = File.readlines(@file_path)
+      lines = File.readlines(@file_path, chomp: true).map { |line| line.gsub("\r", "") }
 
       # Separate import-related lines and other content
       imports = lines.select { |line| line =~ /^\s*(require|require_relative|include)\s/ }
@@ -70,7 +71,9 @@ module Isort
       # Remove duplicates and sort
       lines.uniq.sort
     end
+
   end
+
   class CLI
     def self.start
       options = {}
@@ -80,12 +83,23 @@ module Isort
         opts.on("-fFILE", "--file=FILE", "File to sort") do |file|
           options[:file] = file
         end
+        opts.on("-dDIRECTORY", "--directory=DIRECTORY", "Specify a directory to sort") do |dir|
+          options[:directory] = dir
+        end
       end.parse!
 
       if options[:file]
         sorter = FileSorter.new(options[:file])
         sorter.sort_and_format_imports
         puts "Imports sorted in #{options[:file]}"
+      elsif options[:directory]
+        count = 0
+        Dir.glob("#{options[:directory]}/**/*.rb").each do |file|
+          count += 1
+          sorter = FileSorter.new(file)
+          sorter.sort_and_format_imports
+        end
+        puts "Sorted imports in #{count} files in directory: #{options[:directory]}"
       else
         puts "Please specify a file using -f or --file"
       end

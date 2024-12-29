@@ -1,0 +1,11 @@
+module Isort
+  class FileSorter
+    @file_path: untyped
+
+    def sort_and_format_imports: -> untyped
+
+    def sort_directory: -> untyped
+
+    def sort_imports: -> untyped
+  end
+end
