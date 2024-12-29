@@ -17,3 +17,12 @@
 
 ### Added
 - Import sorting functionality support for a whole directory
+
+## [0.1.5] - 2024-12-29
+
+- Third release
+
+### Added
+- Preserve comments associated with imports
+- Add new line between different groups sorted
+- Don't do anything if no imports are found in a file

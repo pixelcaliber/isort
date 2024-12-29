@@ -11,17 +11,22 @@ Gem::Specification.new do |spec|
   spec.executables = ["isort"]
   spec.require_paths = ["lib"]
   spec.bindir = "exe"
-  spec.summary     = "A Ruby gem for sorting and organizing import statements"
-  spec.description = "Isort automatically sorts and organizes your Ruby imports, including require, require_relative, include, and extend statements"
-  spec.homepage = "https://github.com/abhinvv1/sort"
+  spec.summary = "A Ruby gem for sorting and organizing import statements"
+  spec.description = "Isort automatically sorts and organizes your Ruby imports, including require,"\
+    " require_relative, include, using, and extend statements."\
+    "Has the ability to group different types of imports together. "\
+    "It can process single files or entire directories directly through"\
+    "command-line interface, and preserve the code comments and inline documentation"
+
+  spec.homepage = "https://github.com/abhinvv1/isort"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/abhinvv1/sort"
-  spec.metadata["changelog_uri"] = "https://github.com/abhinvv1/sort"
+  spec.metadata["source_code_uri"] = "https://github.com/abhinvv1/isort"
+  spec.metadata["changelog_uri"] = "https://github.com/abhinvv1/isort"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

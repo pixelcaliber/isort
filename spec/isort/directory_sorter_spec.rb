@@ -1,6 +1,7 @@
-require 'tmpdir'
 require 'fileutils'
 require 'isort'
+require 'tmpdir'
+
 
 RSpec.describe Isort::CLI do
   let(:test_directory) { Dir.mktmpdir } # Automatically managed temporary directory
@@ -46,16 +47,21 @@ RSpec.describe Isort::CLI do
         expect(file1_content).to eq(<<~RUBY)
           require 'csv'
           require 'json'
+          
           require_relative 'a_file'
           require_relative 'b_file'
+          
           include SomeModule
+          
           extend AnotherModule
         RUBY
 
         expect(file2_content).to eq(<<~RUBY)
           require 'csv'
           require 'yaml'
+          
           require_relative 'z_file'
+          
           include AnotherModule
         RUBY
       end
