@@ -1,6 +1,6 @@
 # Isort
 
-A Ruby gem that automatically sorts and organizes your import statements in Ruby files.
+A Ruby gem that automatically sorts and organizes your import statements in Ruby files. You can use it on a file or a complete directory at once.
 
 ## Installation
 
@@ -12,10 +12,17 @@ gem install isort
 
 ### Command Line
 
+#### For file:
 ```bash
 isort --file path/to/your/file.rb
 or
 isort -f path/to/your/file.rb
+```
+#### For directory
+```bash
+isort --directory path/to/your/directory
+or
+isort -d path/to/your/directory
 ```
 
 ### In Ruby Code
